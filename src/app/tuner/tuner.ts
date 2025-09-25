@@ -20,19 +20,16 @@ export class Tuner {
   const audio = document.getElementById(audioId) as HTMLAudioElement;
 
   if (audio) {
-    // 1. CARICA ESPLICITAMENTE l'audio, in modo che il browser lo prepari subito.
-    audio.load();
+    // RIMUOVI audio.load(); <-- CAUSAVA IL CONFLITTO
 
-    // 2. Resetta il tempo (riavvolgi)
+    // Resetta il tempo (riavvolgi)
     audio.currentTime = 0;
 
-    // 3. Esegui la riproduzione
+    // Esegui la riproduzione
     audio.play().catch(error => {
-      // Se c'è un errore (es. ancora bloccato), stampalo ma non bloccare l'app
-      console.error("Audio playback attempted but failed silently:", error);
-    });
+      // Se c'è un errore (dovrebbe essere raro ora), stampalo.
+      console.error("Final Audio Playback Error:", error);
+      });
+    }
   }
-}
-
-  // ... altre funzioni come changeTunerToDropD, ecc. (se le sposti qui)
 }
