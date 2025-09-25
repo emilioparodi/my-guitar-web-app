@@ -259,7 +259,7 @@ th {
     margin-bottom: 15px;
 }
 
-#tuner-button, #tuner-button-e, #tuner-button-d {
+.tuner-button, .tuner-button-e, .tuner-button-d {
     min-width: 70px;
     margin: 3px;
     font-size: 18pt !important;
