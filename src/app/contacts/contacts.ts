@@ -30,7 +30,7 @@ export class Contacts implements OnInit {
     const num1 = Math.floor(Math.random() * 10) + 1;
     const num2 = Math.floor(Math.random() * 10) + 1;
     this.correctAnswer = num1 + num2;
-    this.captchaQuestion = `Quanto fa ${num1} + ${num2}?`;
+    this.captchaQuestion = `How much is ${num1} + ${num2}?`;
 
     // RIMOZIONE: this.cdr.detectChanges(); <-- QUESTA ERA LA CAUSA DELL'ERRORE
   }
