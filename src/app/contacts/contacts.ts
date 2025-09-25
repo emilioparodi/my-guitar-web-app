@@ -11,35 +11,35 @@ import { CommonModule } from '@angular/common';
 })
 export class Contacts implements OnInit {
 
-  // Variabili di Stato
   private correctAnswer: number = 0;
   public captchaQuestion: string = '';
-  // Lo stato del form controlla l'interfaccia utente (Visibile nel template)
   public formStatus: 'idle' | 'sending' | 'success' | 'error' = 'idle';
 
-  // INIETTA ChangeDetectorRef
   constructor(private cdr: ChangeDetectorRef) {
+    // NON CHIAMIAMO generateCaptcha() qui. La sposteremo in ngOnInit
+    // Questo previene l'errore di Change Detection precoce.
+  }
+
+  ngOnInit(): void {
+    // Spostiamo qui la generazione iniziale del CAPTCHA
     this.generateCaptcha();
   }
 
-  ngOnInit(): void { }
-
-  // 1. GENERAZIONE CAPTCHA: Aggiorna la domanda
+  // 1. GENERAZIONE CAPTCHA: NON FORZA L'AGGIORNAMENTO
   generateCaptcha(): void {
     const num1 = Math.floor(Math.random() * 10) + 1;
     const num2 = Math.floor(Math.random() * 10) + 1;
     this.correctAnswer = num1 + num2;
     this.captchaQuestion = `Quanto fa ${num1} + ${num2}?`;
 
-    // Forzo l'aggiornamento dopo la generazione del CAPTCHA
-    this.cdr.detectChanges();
+    // RIMOZIONE: this.cdr.detectChanges(); <-- QUESTA ERA LA CAUSA DELL'ERRORE
   }
 
   // 2. VALIDAZIONE: Controlla gli input
   validateForm(event: Event): void {
     event.preventDefault();
 
-    // Riferimenti agli elementi DOM
+    // Riferimenti agli elementi DOM (lasciamo il codice come prima)
     const captchaInput = document.getElementById('captchaInput') as HTMLInputElement;
     const privacyCheck = document.getElementById('privacyCheck') as HTMLInputElement;
     const errorMessage = document.getElementById('error-message') as HTMLElement;
@@ -59,11 +59,11 @@ export class Contacts implements OnInit {
         errorMessage.style.display = 'block';
         captchaInput.value = '';
         this.generateCaptcha();
-        this.cdr.detectChanges(); // Forzo aggiornamento se c'è errore di validazione
+        this.cdr.detectChanges(); // QUI IL CHANGE DETECTION VA BENE
     }
   }
 
-  // 3. AGGIORNAMENTO STATO: Funzione centrale per il Change Detection
+  // 3. AGGIORNAMENTO STATO: Funzione centrale (NON MODIFICARE)
   public updateStatus(newStatus: 'idle' | 'success' | 'error', form?: HTMLFormElement): void {
       this.formStatus = newStatus;
 
@@ -82,7 +82,7 @@ export class Contacts implements OnInit {
       }
   }
 
-  // 4. FUNZIONE AJAX: Invia i dati a Formspree
+  // 4. FUNZIONE AJAX: Invia i dati a Formspree (NON MODIFICARE)
   private submitForm(form: HTMLFormElement): void {
     this.formStatus = 'sending';
     this.cdr.detectChanges(); // FORZA SUBITO: Mostra 'Invio in corso...'
@@ -102,7 +102,6 @@ export class Contacts implements OnInit {
         }
     })
     .catch(error => {
-        // Errore di rete
         this.updateStatus('error');
     });
   }
