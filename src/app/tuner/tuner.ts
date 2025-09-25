@@ -17,12 +17,26 @@ export class Tuner {
   }
   // Funzione che gestisce la riproduzione audio in modo robusto
   playNote(audioId: string) {
-    const audio = document.getElementById(audioId) as HTMLAudioElement;
-    if (audio) {
+  const audio = document.getElementById(audioId) as HTMLAudioElement;
+
+  if (audio) {
+    // 1. Resetta il tempo (riavvolgi)
       audio.currentTime = 0;
-      audio.play().catch(error => {
-        console.error("Audio playback blocked:", error);
-      });
+
+      // 2. Esegui la riproduzione catturando ESPLICITAMENTE la Promise
+      const playPromise = audio.play();
+
+      if (playPromise !== undefined) {
+        playPromise.then(_ => {
+          // La riproduzione è iniziata con successo.
+        }).catch(error => {
+          // Questo cattura gli errori come 'NotAllowedError' (blocco sicurezza)
+          console.error("Audio playback blocked by browser security. Error:", error);
+
+          // A questo punto, il browser ha bloccato la riproduzione e
+          // non c'è altro che il codice possa fare.
+        });
+      }
     }
   }
 }
