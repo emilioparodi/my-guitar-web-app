@@ -29,7 +29,7 @@
     </div>
   </div>
 </div>
--->
+
 <div class="contact-container">
   <h2>Contattami</h2>
   <form [formGroup]="contactForm" action="https://formspree.io/f/xovkqgkd" method="POST">
@@ -78,4 +78,75 @@
 
     <button type="submit" [disabled]="!contactForm.valid">Invia</button>
   </form>
+</div>
+-->
+<!-- modify this form HTML and place wherever you want your form -->
+<!--
+<form
+  action="https://formspree.io/f/xovkqgkd"
+  method="POST"
+-->
+<!--
+  <label>
+    Your email:
+    <input type="email" name="email">
+  </label>
+  <label>
+    Your message:
+    <textarea name="message"></textarea>
+  </label>
+-->
+  <!-- your other form fields go here -->
+   <!--
+  <button type="submit">Send</button>
+</form>
+-->
+
+<div class="container" id="white">
+  <div class="extra-space"></div>
+<form
+  action="https://formspree.io/f/xovkqgkd"
+  method="POST"
+  (submit)="validateForm($event)"
+  id="contactForm"
+>
+  <label for="name">Nome completo:</label>
+  <input type="text" id="name" name="name" required>
+  <label for="email">Email:</label>
+  <input type="email" id="email" name="email" required>
+  <label for="message">Messaggio:</label>
+  <textarea id="message" name="message" required></textarea>
+  <br>
+
+  <div class="form-control">
+    <div id="captcha-box">{{ captchaQuestion }}</div>
+    <input type="number" id="captchaInput" placeholder="Inserisci il risultato" required>
+  </div>
+
+  <div class="form-control privacy-check">
+    <input type="checkbox" id="privacyCheck" required>
+    <label for="privacyCheck">Accetto l'Informativa sulla Privacy.</label>
+  </div>
+
+  <p id="error-message" style="color: red; margin-top: 10px; display: none;">
+    Per favore, verifica il CAPTCHA e accetta l'Informativa sulla Privacy.
+  </p>
+
+  <button type="submit" [disabled]="formStatus === 'sending'">
+    <span *ngIf="formStatus === 'idle'">Invia Messaggio</span>
+    <span *ngIf="formStatus === 'sending'">Invio in corso...</span>
+    <span *ngIf="formStatus === 'success'">Inviato!</span>
+    <span *ngIf="formStatus === 'error'">Riprova</span>
+  </button>
+
+  <div class="form-status" style="margin-top: 20px;">
+    <p *ngIf="formStatus === 'success'" style="color: green; font-weight: bold;">
+      ✔ Grazie! Il tuo messaggio è stato inviato con successo.
+    </p>
+
+    <p *ngIf="formStatus === 'error'" style="color: red; font-weight: bold;">
+      ❌ C'è stato un problema durante l'invio. Per favore, riprova.
+    </p>
+  </div>
+</form>
 </div>

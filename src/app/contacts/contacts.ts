@@ -1,54 +1,98 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-contacts',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule],
   templateUrl: './contacts.html',
   styleUrl: './contacts.css'
 })
 export class Contacts implements OnInit {
-  contactForm!: FormGroup;
-  captchaSolution: number = 0;
-  isSubmitted: boolean = false;
 
-  constructor(private fb: FormBuilder) { }
+  private correctAnswer: number = 0;
+  public captchaQuestion: string = '';
+  public formStatus: 'idle' | 'sending' | 'success' | 'error' = 'idle';
 
-  ngOnInit(): void {
+  constructor() {
     this.generateCaptcha();
-    this.contactForm = this.fb.group({
-      name: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      message: ['', Validators.required],
-      privacy: [false, Validators.requiredTrue], // Validazione per il check privacy
-      captcha: ['', [Validators.required, this.captchaValidator.bind(this)]]
-    });
   }
+
+  ngOnInit(): void { }
 
   generateCaptcha(): void {
     const num1 = Math.floor(Math.random() * 10) + 1;
     const num2 = Math.floor(Math.random() * 10) + 1;
-    this.captchaSolution = num1 + num2;
+    this.correctAnswer = num1 + num2;
+    this.captchaQuestion = `Quanto fa ${num1} + ${num2}?`;
   }
 
-  captchaValidator(control: any) {
-    const isCorrect = control.value == this.captchaSolution;
-    return isCorrect ? null : { invalidCaptcha: true };
-  }
+  validateForm(event: Event): void {
+    event.preventDefault();
 
-  onSubmit(): void {
-    this.isSubmitted = true;
-    if (this.contactForm.valid) {
-      console.log('Form inviato correttamente:', this.contactForm.value);
-      alert('Messaggio inviato con successo!');
-      this.contactForm.reset();
-      this.isSubmitted = false;
-      this.generateCaptcha();
+    // ... (Logica di validazione rimane invariata) ...
+    const captchaInput = document.getElementById('captchaInput') as HTMLInputElement;
+    const privacyCheck = document.getElementById('privacyCheck') as HTMLInputElement;
+    const errorMessage = document.getElementById('error-message') as HTMLElement;
+    const contactForm = document.getElementById('contactForm') as HTMLFormElement;
+
+    this.formStatus = 'idle';
+
+    const userAnswer = parseInt(captchaInput.value, 10);
+    const isCaptchaCorrect = userAnswer === this.correctAnswer;
+    const isPrivacyChecked = privacyCheck.checked;
+
+    if (isCaptchaCorrect && isPrivacyChecked) {
+        errorMessage.style.display = 'none';
+        this.submitForm(contactForm);
     } else {
-      console.log('Il form non è valido.');
-      alert('Per favore, compila tutti i campi correttamente.');
+        errorMessage.style.display = 'block';
+        captchaInput.value = '';
+        this.generateCaptcha();
     }
+  }
+
+  // NUOVA FUNZIONE TRACCIABILE DA ANGULAR
+  public updateStatus(newStatus: 'idle' | 'success' | 'error', form?: HTMLFormElement): void {
+      this.formStatus = newStatus;
+
+      if (newStatus === 'success' && form) {
+          form.reset();
+          this.generateCaptcha();
+
+          // Dopo 5 secondi, simuliamo un altro evento per tornare a IDLE
+          setTimeout(() => {
+              this.formStatus = 'idle';
+              // Forza il rendering finale simulando un evento mouseover su un elemento
+              document.dispatchEvent(new Event('mouseover'));
+          }, 5000);
+      }
+  }
+
+
+  // FUNZIONE AJAX: Ora usa la funzione pubblica per garantire il tracciamento
+  private submitForm(form: HTMLFormElement): void {
+    this.formStatus = 'sending';
+
+    const data = new FormData(form);
+
+    fetch(form.action, {
+        method: form.method,
+        body: data,
+        headers: { 'Accept': 'application/json' }
+    })
+    .then(response => {
+        if (response.ok) {
+            // Successo: Usa la funzione pubblica di Angular per il tracciamento
+            this.updateStatus('success', form);
+        } else {
+            // Errore: Sblocca il pulsante
+            this.updateStatus('error');
+        }
+    })
+    .catch(error => {
+        // Errore di rete: Sblocca il pulsante
+        this.updateStatus('error');
+    });
   }
 }
