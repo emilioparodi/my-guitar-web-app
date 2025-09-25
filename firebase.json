@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/guitar-web-app",
+    "public": "dist/guitar-web-app/browser",
     "ignore": [
       "firebase.json",
       "**/.*",
