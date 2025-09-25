@@ -20,16 +20,25 @@ export class Tuner {
   const audio = document.getElementById(audioId) as HTMLAudioElement;
 
   if (audio) {
-    // RIMUOVI audio.load(); <-- CAUSAVA IL CONFLITTO
+    // 1. Devi ASSICURARTI che NON ci sia più audio.load() da nessuna parte.
+    // Il browser farà load() automaticamente quando glielo chiedi di suonare.
 
-    // Resetta il tempo (riavvolgi)
+    // 2. Forza il riavvolgimento
     audio.currentTime = 0;
 
-    // Esegui la riproduzione
-    audio.play().catch(error => {
-      // Se c'è un errore (dovrebbe essere raro ora), stampalo.
-      console.error("Final Audio Playback Error:", error);
+    // 3. Esegui la riproduzione gestendo la Promise ESPLICITAMENTE
+    const playPromise = audio.play();
+
+    if (playPromise !== undefined) {
+      playPromise.then(_ => {
+        // La riproduzione è iniziata con successo (nessun errore di sicurezza)
+      })
+      .catch(error => {
+        // La riproduzione è stata bloccata da un errore (es. NotAllowedError)
+        console.error("Safari Blocked Playback:", error.name, error);
+        // A questo punto, l'errore non è più risolvibile dal codice.
       });
     }
   }
+}
 }
