@@ -14,25 +14,25 @@ export class Tuner {
   // Funzione che commuta l'accordatura
   changeTuner(mode: 'standard' | 'dropD') {
     this.tunerMode = mode;
-}
+  }
   // Funzione che gestisce la riproduzione audio in modo robusto
   playNote(audioId: string) {
-    const audio = document.getElementById(audioId) as HTMLAudioElement;
+  const audio = document.getElementById(audioId) as HTMLAudioElement;
 
-    if (audio) {
-      // Resetta il tempo (riavvolgi)
-      audio.currentTime = 0;
+  if (audio) {
+    // 1. CARICA ESPLICITAMENTE l'audio, in modo che il browser lo prepari subito.
+    audio.load();
 
-      // Prova a riprodurre, gestendo la Promise per evitare errori non catturati.
-      audio.play().catch(error => {
-        // Opzionale: stampa l'errore in console, ma evita di bloccare l'app
-        console.error("Audio playback blocked:", error);
+    // 2. Resetta il tempo (riavvolgi)
+    audio.currentTime = 0;
 
-        // Questo è il modo in cui gestiamo l'errore di Safari: l'utente DEVE cliccare.
-        // Se il click è stato fatto, l'errore è superato.
-      });
-    }
+    // 3. Esegui la riproduzione
+    audio.play().catch(error => {
+      // Se c'è un errore (es. ancora bloccato), stampalo ma non bloccare l'app
+      console.error("Audio playback attempted but failed silently:", error);
+    });
   }
+}
 
   // ... altre funzioni come changeTunerToDropD, ecc. (se le sposti qui)
 }
