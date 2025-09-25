@@ -1,0 +1,25 @@
+<h3 class="navbar-title">GUITAR TUNER</h3>
+<div id="tuner-display">
+  <span id="standard">Standard</span>
+  <span id="drop-d" style="display: none">Drop D</span>
+</div>
+<div id="tuner-switch">
+  <button class="btn btn-danger" id="tuner-switch-button" onclick="changeTunerToStandardTuning()">Standard</button>
+  <button class="btn btn-danger" id="tuner-switch-button" onclick="changeTunerToDropD()">Drop D</button>
+</div>
+<div class="tuner">
+  <button type="button" class="btn btn-warning" id="tuner-button" onclick="document.getElementById('audio1').play()">e</button>
+    <audio id="audio1" src="/assets/audio/E-high.mp3" ></audio>
+  <button type="button" class="btn btn-warning" id="tuner-button" onclick="document.getElementById('audio2').play()">B</button>
+    <audio id="audio2" src="/assets/audio/B.mp3" ></audio>
+  <button type="button" class="btn btn-warning" id="tuner-button" onclick="document.getElementById('audio3').play()">G</button>
+    <audio id="audio3" src="/assets/audio/G.mp3" ></audio>
+  <button type="button" class="btn btn-warning" id="tuner-button" onclick="document.getElementById('audio4').play()">D</button>
+    <audio id="audio4" src="/assets/audio/D.mp3" ></audio>
+  <button type="button" class="btn btn-warning" id="tuner-button" onclick="document.getElementById('audio5').play()">A</button>
+    <audio id="audio5" src="/assets/audio/A.mp3" ></audio>
+  <button type="button" class="btn btn-warning" id="tuner-button-e" onclick="document.getElementById('audio6').play()">E</button>
+    <audio id="audio6" src="/assets/audio/E.mp3" ></audio>
+  <button type="button" class="btn btn-warning" id="tuner-button-d" style="display: none" onclick="document.getElementById('audio6.1').play()">D</button>
+    <audio id="audio6.1" src="/assets/audio/Drop-D.mp3"></audio>
+</div>

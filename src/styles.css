@@ -1,0 +1,483 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+
+html, body {
+  width: 100%;
+  margin: 0;
+  font-family: 'Quicksand', sans-serif;
+}
+
+body {
+  background: url('assets/images/wallpaper.jpg') no-repeat;
+  background-attachment: fixed; /* Usa 'fixed' per un effetto parallax */
+  background-position: center center;
+  background-size: cover; /* Mantiene la copertura dell'immagine */
+}
+
+#container {
+min-height: 100vh;
+display: flex;
+flex-direction: column;
+}
+
+.content-wrapper {
+flex-grow: 1;
+}
+
+h1 {
+    color: #000000;
+    font-size: 2.5rem;
+}
+
+h2 {
+    background-color: #FFFF00;
+    padding-top: 1%;
+    padding-left: 1%;
+    margin-bottom: 0px;
+}
+
+h3 {
+    font-weight: 700;
+    text-align: center;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+th {
+  font-weight: normal;
+}
+
+.centered {
+  margin: 1rem;
+  text-align: center;
+  border: 1px solid black;
+  border-radius: 30px;
+  color: #000000;
+}
+
+#error {
+    font-size: 15rem;
+    line-height: 15rem;
+}
+
+.navbar {
+    width: 100%;
+    margin: auto;
+    height: 10vh;
+}
+
+.navbar-brand {
+    display: none;
+    color: #FFFFFF;
+}
+
+.navbar-title {
+  padding-top: 0.5em;
+  font-size: 3.5em;
+  color: #D4AF37;
+  text-shadow: 2px 2px #000000;
+  font-family: 'Luckiest Guy', cursive;
+  z-index: 9999;
+}
+
+.rainbow-text {
+  background-image: repeating-linear-gradient(45deg, #00FFFF, #00FF7F, #FFFF00, #FF1493, #00BFFF, #9400D3, #ADFF2F);
+  font-weight: bold;
+  padding: 5px;
+  text-align: center;
+  background-size: 800% 800%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 1.5rem;
+  animation: rainbow 8s ease infinite;
+}
+@keyframes rainbow {
+  0%{background-position:0% 50%}
+  50%{background-position:100% 25%}
+  100%{background-position:0% 50%}
+}
+
+/* Regole per la navbar-toggler */
+
+.navbar-toggler {
+    z-index: 1051; /* Assicura che il pulsante sia cliccabile */
+}
+
+.btn.btn-primary.btn-lg {
+    width:110px;
+    height:60px;
+    border:2px solid#000000;
+    border-radius:0%;
+    font-size:16px;
+    font-weight: 400;
+    opacity:none;
+    transition:opacity 0.3s;
+    -moz-transition:opacity 0.3s;
+    -webkit-transition: opacity 0.3s;
+    -o-transition:opacity 0.3s;
+}
+.btn.btn-primary.btn-lg:hover {
+    opacity: 0.3;
+}
+
+.title-line {
+    display:block;
+    border:none;
+    color:white;
+    height:1px;
+    background:black;
+    background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 550, from(#FFFFFF), to(transparent));
+}
+
+#transparent {
+    background-color: transparent;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 1rem;
+    padding-left: 0px;
+    max-width: 992px;
+    height: auto;
+}
+
+#transparent-2 {
+    background-color: transparent;
+    text-align: center;
+    padding: 0px;
+    max-width: 992px;
+    height: auto;
+    min-height: 80vh;
+}
+
+#white {
+    background-color: #FFFFFF;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-left:auto;
+    margin-right:auto;
+    padding-left:20px;
+    padding-right: 20px;
+    padding-bottom: 15px;
+    max-width: 992px;
+    border:1px solid #000000;
+    height: auto;
+    min-height: 90vh;
+}
+
+.extra-space {
+  padding-top: 1.5rem;
+}
+
+/* Home */
+
+.entry-title {
+    margin-top: 10rem;;
+    font-size: 5.5rem;
+    color: #D4AF37;
+    text-shadow: 2px 2px #000000;
+    text-align: center;
+    font-family: 'Luckiest Guy', cursive;
+}
+
+/* Biography */
+
+#m-notes {
+    width: 100%;
+    margin-top: 15px;
+    font-family: 'Luckiest Guy', cursive;
+}
+
+.column {
+    -webkit-column-count:2; /* Chrome, Safari, Opera */
+    -moz-column-count:2; /* Firefox */
+    column-count:2;
+    -webkit-column-rule:1px outset #000000; /* Chrome, Safari, Opera */
+    -moz-column-rule:1px outset #000000; /* Firefox */
+    column-rule:1px outset #000000;
+    -webkit-column-gap:40px; /* Chrome, Safari, Opera */
+    -moz-column-gap:40px; /* Firefox */
+    column-gap:40px;
+    text-align:justify;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.column-3 {
+    -webkit-column-count:3; /* Chrome, Safari, Opera */
+    -moz-column-count:3; /* Firefox */
+    column-count:3;
+    -webkit-column-rule:1px outset #000000; /* Chrome, Safari, Opera */
+    -moz-column-rule:1px outset #000000; /* Firefox */
+    column-rule:1px outset #000000;
+    -webkit-column-gap:40px; /* Chrome, Safari, Opera */
+    -moz-column-gap:40px; /* Firefox */
+    column-gap:40px;
+    text-align:justify;
+    padding-left: 20px;
+    padding-right: 20px;
+
+}
+
+#img-about {
+    height:auto;
+    border:1px solid black;
+}
+
+/* Tools */
+
+/* - Tuner */
+
+#tuner-display {
+    background-color: rgba(61, 58, 218, 0.548);
+    border: 1px solid #000000;
+    font-size: 30pt;
+    text-align: center;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+#tuner-switch {
+    background-color: #000000;
+    text-align: center;
+
+}
+
+#tuner-switch-button {
+    min-width: 40%;
+    margin: 10px;
+}
+
+.tuner {
+    background-color: #000000;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+#tuner-button, #tuner-button-e, #tuner-button-d {
+    min-width: 70px;
+    margin: 3px;
+    font-size: 18pt !important;
+}
+
+/* Videos */
+
+.video-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.video-item {
+  background-color: #333;
+  color: white;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+}
+
+.video-item h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 1.2em;
+}
+
+.video-item iframe {
+  margin-bottom: 10px;
+  border-radius: 4px;
+}
+
+.video-item a {
+  color: #87CEFA;
+  text-decoration: none;
+  margin-top: auto;
+}
+
+.video-item a:hover {
+  text-decoration: underline;
+}
+
+/* Resources */
+
+/* WORKS */
+
+#covers {
+    border: 1px solid #000000;
+}
+
+/* CONTACT */
+
+#contact-card {
+    width: 25rem;
+    margin:auto;
+    padding: 5px;
+}
+
+.contact-container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2 { text-align: center; color: #333; }
+.form-group { margin-bottom: 20px; }
+label { display: block; font-weight: bold; margin-bottom: 5px; color: #555; }
+input[type="text"], input[type="email"], textarea, input[type="text"] {
+  width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;
+}
+.error-message { color: #dc3545; font-size: 0.8em; margin-top: 5px; }
+button[type="submit"] {
+  width: 100%; padding: 10px; background-color: #007bff; color: white; border: none;
+  border-radius: 4px; font-size: 1.1em; cursor: pointer; transition: background-color 0.3s;
+}
+button[type="submit"]:hover { background-color: #0056b3; }
+button[type="submit"]:disabled { background-color: #ccc; cursor: not-allowed; }
+
+/* Stili specifici per il captcha e la privacy */
+.captcha-group { display: flex; align-items: center; }
+.captcha-question { margin: 0 10px; font-weight: bold; font-size: 1.2em; }
+.privacy-group { display: flex; align-items: center; }
+.privacy-label { margin-left: 10px; font-weight: normal; }
+
+/* Footer */
+
+.footer {
+    width: 100%;
+    position: absolute;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+    background-color: transparent;
+    color: white;
+    text-align: center;
+}
+
+.in-footer {
+    margin-left:auto;
+    margin-right:auto;
+    padding-left:20px;
+    padding-right: 20px;
+    max-width: 100%;
+    background-color: #1a1a1a;
+    border:2px solid #000000;
+
+}
+
+/* BANNERS */
+
+#cookie-law {
+    background-color: #fdd22a;
+    text-align: center;
+}
+
+#cookie-law a{
+    color: #000000;
+    text-decoration: underline;
+}
+
+#banner-container {
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+    /* background-image: linear-gradient(to right, #ffffff , transparent); */
+    background-color: #FFFFFF;
+    max-width: 989px;
+    margin:auto;
+    padding-bottom: 0px;
+}
+
+.banner {
+    overflow: auto;
+}
+
+#banner-img {
+    float: left;
+    margin-right: 15px;
+    height: 110px;
+}
+
+#banner-link {
+    display: block;
+    text-decoration: none;
+    color: #000000;
+}
+
+/* Mobile */
+
+@media screen and (max-width: 992px) {
+
+    #top-nav {display: none !important;}
+
+    .navbar-menu-dropdown {
+      /* Forza la posizione assoluta per sovrapporsi */
+      position: absolute;
+
+      /* Posiziona il menu subito sotto la navbar */
+      top: 100%;
+      left: 0;
+      width: 100%;
+
+      /* Questo è il punto chiave: z-index elevato per stare sopra tutto */
+      z-index: 1000;
+
+      background-color: rgb(33 33 41 / 75%) !important;
+
+      /* Rimuovi il padding che può causare problemi di layout */
+      padding: 0;
+    }
+
+    .btn.btn-primary.btn-lg {width: 100%}
+
+    #transparent {
+        margin-left: 5px;
+        margin-right: 5px;
+        text-align: center;
+        min-height: 83vh;
+    };
+
+    .entry-title {font-size: 3em;}
+
+    .navbar {height: auto; padding-top: 10px; background-color:#1a1a1a;}
+
+    .navbar-brand {display: inline}
+
+    #m-notes {
+        width: 100%;
+    }
+
+    #img-about {
+        width:100%;
+    }
+
+    .column {
+        width: 100%;
+        column-count:1;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+    .column-3 {
+        column-count:1;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    #covers {
+        margin-bottom: 15px;
+    }
+
+    .card {
+        max-width: 100%;
+
+    }
+    #banner-container {
+        display: none;
+    }
+}
