@@ -50,7 +50,7 @@
             *ngIf="formStatus !== 'success' && formStatus !== 'sending'"
             >
             <div class="form-group">
-                <label for="name">Nome completo</label>
+                <label for="name">Name</label>
                 <input type="text" id="name" name="name" required>
             </div>
 
@@ -60,7 +60,7 @@
             </div>
 
             <div class="form-group">
-                <label for="message">Messaggio</label>
+                <label for="message">Message</label>
                 <textarea id="message" name="message" rows="5" required></textarea>
             </div>
 
@@ -71,23 +71,23 @@
 
             <div class="form-group checkbox-group">
                 <input type="checkbox" id="privacyCheck" name="privacy" required>
-                <label for="privacyCheck">Accetto l'informativa sulla privacy.</label>
+                <label for="privacyCheck">I accept the privacy policy.</label>
             </div>
 
             <div id="error-message" class="alert local-error-message" style="display:none;">
-                Per favore, compila tutti i campi, accetta la privacy e risolvi il CAPTCHA.
+                Please fill in all fields, accept the privacy policy, and solve the CAPTCHA.
             </div>
             <button
             type="submit"
             [disabled]="formStatus !== 'idle' && formStatus !== 'error'"
             class="submit-button"
             >
-            Invia Messaggio
+            Send message
             </button>
         </form>
 
           <div *ngIf="formStatus === 'sending'" class="loading-message">
-              Invio in corso... attendere prego.
+              Sending... please wait.
           </div>
       </section>
     </div>
