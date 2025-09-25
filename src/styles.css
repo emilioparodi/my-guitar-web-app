@@ -13,7 +13,7 @@ html, body {
 }
 
 body {
-  background: url('./assets/images/wallpaper.jpg') no-repeat;
+  background: url('/assets/images/wallpaper.jpg') no-repeat;
   background-attachment: fixed; /* Usa 'fixed' per un effetto parallax */
   background-position: center center;
   background-size: cover; /* Mantiene la copertura dell'immagine */
