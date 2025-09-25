@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -10,16 +10,20 @@ import { CommonModule } from '@angular/common';
 })
 export class Contacts implements OnInit {
 
+  // Variabili di Stato
   private correctAnswer: number = 0;
   public captchaQuestion: string = '';
+  // Lo stato del form controlla l'interfaccia utente
   public formStatus: 'idle' | 'sending' | 'success' | 'error' = 'idle';
 
-  constructor() {
+  // INIETTA ChangeDetectorRef: CRUCIALE per forzare l'aggiornamento in modalità Prod
+  constructor(private cdr: ChangeDetectorRef) {
     this.generateCaptcha();
   }
 
   ngOnInit(): void { }
 
+  // DEFINIZIONE CORRETTA: Metodo della classe
   generateCaptcha(): void {
     const num1 = Math.floor(Math.random() * 10) + 1;
     const num2 = Math.floor(Math.random() * 10) + 1;
@@ -27,10 +31,11 @@ export class Contacts implements OnInit {
     this.captchaQuestion = `Quanto fa ${num1} + ${num2}?`;
   }
 
+  // Funzione principale di validazione
   validateForm(event: Event): void {
     event.preventDefault();
 
-    // ... (Logica di validazione rimane invariata) ...
+    // Riferimenti agli elementi DOM (Nessuna modifica qui)
     const captchaInput = document.getElementById('captchaInput') as HTMLInputElement;
     const privacyCheck = document.getElementById('privacyCheck') as HTMLInputElement;
     const errorMessage = document.getElementById('error-message') as HTMLElement;
@@ -52,19 +57,22 @@ export class Contacts implements OnInit {
     }
   }
 
-  // NUOVA FUNZIONE TRACCIABILE DA ANGULAR
+  // FUNZIONE DI AGGIORNAMENTO STATO: Bypassa il Change Detection bloccato
   public updateStatus(newStatus: 'idle' | 'success' | 'error', form?: HTMLFormElement): void {
       this.formStatus = newStatus;
+
+      // FORZA L'AGGIORNAMENTO IMMEDIATO DELLA VISTA
+      this.cdr.detectChanges();
 
       if (newStatus === 'success' && form) {
           form.reset();
           this.generateCaptcha();
 
-          // Dopo 5 secondi, simuliamo un altro evento per tornare a IDLE
+          // Dopo 5 secondi, torna a IDLE e forza un altro aggiornamento
           setTimeout(() => {
               this.formStatus = 'idle';
-              // Forza il rendering finale simulando un evento mouseover su un elemento
-              document.dispatchEvent(new Event('mouseover'));
+              // Ultimo tentativo di forzare la pulizia, anche se CDR dovrebbe bastare
+              this.cdr.detectChanges();
           }, 5000);
       }
   }
@@ -73,6 +81,8 @@ export class Contacts implements OnInit {
   // FUNZIONE AJAX: Ora usa la funzione pubblica per garantire il tracciamento
   private submitForm(form: HTMLFormElement): void {
     this.formStatus = 'sending';
+    // Forza subito l'aggiornamento a 'Invio in corso...'
+    this.cdr.detectChanges();
 
     const data = new FormData(form);
 
@@ -83,15 +93,15 @@ export class Contacts implements OnInit {
     })
     .then(response => {
         if (response.ok) {
-            // Successo: Usa la funzione pubblica di Angular per il tracciamento
+            // Successo: Usa la funzione pubblica per l'aggiornamento
             this.updateStatus('success', form);
         } else {
-            // Errore: Sblocca il pulsante
+            // Errore HTTP: Sblocca il pulsante
             this.updateStatus('error');
         }
     })
     .catch(error => {
-        // Errore di rete: Sblocca il pulsante
+        // Errore di rete/CORS: Sblocca il pulsante
         this.updateStatus('error');
     });
   }
