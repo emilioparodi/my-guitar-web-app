@@ -23,7 +23,7 @@ jobs:
         run: npm ci
 
       - name: Build Angular app
-        run: npx ng build --configuration production
+        run: npx ng build --configuration production --output-path=dist/guitar-web-app
 
       - name: Deploy to Firebase
         uses: FirebaseExtended/action-hosting-deploy@v0
