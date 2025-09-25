@@ -7,62 +7,65 @@
 
 <div id="tuner-switch">
   <button class="btn btn-danger"
-          *ngIf="tunerMode === 'dropD'"
-          (click)="changeTuner('standard')">Standard</button>
+    *ngIf="tunerMode === 'dropD'"
+    (click)="changeTuner('standard')">Standard</button>
 
   <button class="btn btn-danger"
-          *ngIf="tunerMode === 'standard'"
-          (click)="changeTuner('dropD')">Drop D</button>
+    *ngIf="tunerMode === 'standard'"
+    (click)="changeTuner('dropD')">Drop D</button>
 </div>
 
 <div id="tuner-switch">
   <span *ngIf="tunerMode === 'dropD'"><br></span>
-<span *ngIf="tunerMode === 'standard'"><br></span>
+  <span *ngIf="tunerMode === 'standard'"><br></span>
 </div>
 <div class="tuner">
-<button type="button" class="btn btn-warning tuner-button"
-  (click)="playNote('audio1')">e</button>
-<audio id="audio1">
-    <source src="/assets/audio/E-high.mp3" type="audio/mpeg">
-    <source src="/assets/audio/E-high.ogg" type="audio/ogg">
-</audio>
-<button type="button" class="btn btn-warning tuner-button"
-  (click)="playNote('audio2')">B</button>
-<audio id="audio2">
-    <source src="/assets/audio/B.mp3" type="audio/mpeg">
-    <source src="/assets/audio/B.ogg" type="audio/ogg">
-</audio>
-<button type="button" class="btn btn-warning tuner-button"
-  (click)="playNote('audio3')">G</button>
-<audio id="audio3">
-    <source src="/assets/audio/G.mp3" type="audio/mpeg">
-    <source src="/assets/audio/G.ogg" type="audio/ogg">
-</audio>
-<button type="button" class="btn btn-warning tuner-button"
-  (click)="playNote('audio4')">D</button>
-<audio id="audio4">
-    <source src="/assets/audio/D.mp3" type="audio/mpeg">
-    <source src="/assets/audio/D.ogg" type="audio/ogg">
-</audio>
-<button type="button" class="btn btn-warning tuner-button"
-  (click)="playNote('audio5')">A</button>
-<audio id="audio5">
-    <source src="/assets/audio/A.mp3" type="audio/mpeg">
-    <source src="/assets/audio/A.ogg" type="audio/ogg">
-</audio>
-<button type="button" class="btn btn-warning tuner-button" id="tuner-button-e"
-  *ngIf="tunerMode === 'standard'"
-  (click)="playNote('audio6')">E</button>
-<audio id="audio6">
-    <source src="/assets/audio/E.mp3" type="audio/mpeg">
-    <source src="/assets/audio/E.ogg" type="audio/ogg">
-</audio>
+  <button type="button" class="btn btn-warning tuner-button"
+    (click)="playNote('audio1')">e</button>
+  <audio id="audio1">
+      <source src="/assets/audio/E-high.mp3" type="audio/mpeg">
+      <source src="/assets/audio/E-high.ogg" type="audio/ogg">
+  </audio>
+  <button type="button" class="btn btn-warning tuner-button"
+    (click)="playNote('audio2')">B</button>
+  <audio id="audio2">
+      <source src="/assets/audio/B.mp3" type="audio/mpeg">
+      <source src="/assets/audio/B.ogg" type="audio/ogg">
+  </audio>
+  <button type="button" class="btn btn-warning tuner-button"
+    (click)="playNote('audio3')">G</button>
+  <audio id="audio3">
+      <source src="/assets/audio/G.mp3" type="audio/mpeg">
+      <source src="/assets/audio/G.ogg" type="audio/ogg">
+  </audio>
+  <button type="button" class="btn btn-warning tuner-button"
+    (click)="playNote('audio4')">D</button>
+  <audio id="audio4">
+      <source src="/assets/audio/D.mp3" type="audio/mpeg">
+      <source src="/assets/audio/D.ogg" type="audio/ogg">
+  </audio>
+  <button type="button" class="btn btn-warning tuner-button"
+    (click)="playNote('audio5')">A</button>
+  <audio id="audio5">
+      <source src="/assets/audio/A.mp3" type="audio/mpeg">
+      <source src="/assets/audio/A.ogg" type="audio/ogg">
+  </audio>
+  <button type="button" class="btn btn-warning tuner-button" id="tuner-button-e"
+    *ngIf="tunerMode === 'standard'"
+    (click)="playNote('audio6')">E</button>
+  <audio id="audio6">
+      <source src="/assets/audio/E.mp3" type="audio/mpeg">
+      <source src="/assets/audio/E.ogg" type="audio/ogg">
+  </audio>
 
-<button type="button" class="btn btn-warning tuner-button" id="tuner-button-d"
-  *ngIf="tunerMode === 'dropD'"
-  (click)="playNote('audio6.1')">D</button>
-<audio id="audio6.1">
-    <source src="/assets/audio/Drop-D.mp3" type="audio/mpeg">
-    <source src="/assets/audio/Drop-D.ogg" type="audio/ogg">
-</audio>
+  <button type="button" class="btn btn-warning tuner-button" id="tuner-button-d"
+    *ngIf="tunerMode === 'dropD'"
+    (click)="playNote('audio6.1')">D</button>
+  <audio id="audio6.1">
+      <source src="/assets/audio/Drop-D.mp3" type="audio/mpeg">
+      <source src="/assets/audio/Drop-D.ogg" type="audio/ogg">
+  </audio>
+</div>
+<div *ngIf="audioBlocked" style="color: red; margin-top: 15px; padding: 10px; border: 1px solid red; background: #fee;">
+  Attenzione: Il browser ha bloccato la riproduzione automatica.
 </div>

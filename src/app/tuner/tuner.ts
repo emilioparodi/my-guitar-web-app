@@ -16,13 +16,22 @@ export class Tuner {
     this.tunerMode = mode;
   }
   // Funzione che gestisce la riproduzione audio in modo robusto
+  audioBlocked: boolean = false; // Nuovo stato per il messaggio di errore
+
   playNote(audioId: string) {
     const audio = document.getElementById(audioId) as HTMLAudioElement;
+
     if (audio) {
       audio.currentTime = 0;
-      audio.play().catch(error => {
-        console.error("Audio playback blocked:", error);
-      });
+      const playPromise = audio.play();
+
+      if (playPromise !== undefined) {
+        playPromise.catch(error => {
+          // Se si verifica un errore di blocco, attiva il messaggio
+          this.audioBlocked = true;
+          console.error("Audio playback blocked by browser security.", error);
+        });
+      }
     }
   }
 }
