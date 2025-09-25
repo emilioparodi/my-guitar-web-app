@@ -104,26 +104,66 @@
 
 <div class="container" id="white">
   <div class="extra-space"></div>
-<form
-  action="https://formspree.io/f/xovkqgkd"
-  method="POST"
-  (submit)="validateForm($event)"
-  id="contactForm"
->
-  <button type="submit" [disabled]="formStatus === 'sending'">
-    <span *ngIf="formStatus === 'idle'">Invia Messaggio</span>
-    <span *ngIf="formStatus === 'sending'">Invio in corso...</span>
-    <span *ngIf="formStatus === 'success'">Inviato!</span>
-    <span *ngIf="formStatus === 'error'">Riprova</span>
-  </button>
+<section class="contact-form">
 
-  <div class="form-status" style="margin-top: 20px;">
-    <p *ngIf="formStatus === 'success'" style="color: green; font-weight: bold;">
-      ✔ Grazie! Il tuo messaggio è stato inviato con successo.
-    </p>
-    <p *ngIf="formStatus === 'error'" style="color: red; font-weight: bold;">
-      ❌ C'è stato un problema durante l'invio. Per favore, riprova.
-    </p>
-  </div>
-</form>
+    <div *ngIf="formStatus === 'success'" class="alert success-message">
+        Grazie! Il tuo messaggio è stato inviato con successo.
+    </div>
+
+    <div *ngIf="formStatus === 'error'" class="alert error-message">
+        Si è verificato un errore durante l'invio. Riprova più tardi.
+    </div>
+
+    <form
+        id="contactForm"
+        action="[LA TUA URL FORM-SPREE QUI]"
+        method="POST"
+        (submit)="validateForm($event)"
+        *ngIf="formStatus !== 'success' && formStatus !== 'sending'"
+    >
+
+        <div class="form-group">
+            <label for="name">Nome completo</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="_replyto" required>
+        </div>
+
+        <div class="form-group">
+            <label for="message">Messaggio</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+        </div>
+
+        <div class="form-group captcha-group">
+            <label for="captchaInput">{{ captchaQuestion }}</label>
+            <input type="number" id="captchaInput" name="captcha" required>
+        </div>
+
+        <div class="form-group checkbox-group">
+            <input type="checkbox" id="privacyCheck" name="privacy" required>
+            <label for="privacyCheck">Accetto l'informativa sulla privacy.</label>
+        </div>
+
+        <div id="error-message" class="alert local-error-message" style="display:none;">
+            Per favore, compila tutti i campi, accetta la privacy e risolvi il CAPTCHA.
+        </div>
+
+        <button
+        type="submit"
+        [disabled]="formStatus !== 'idle' && formStatus !== 'error'"
+        class="submit-button"
+        >
+        Invia Messaggio
+        </button>
+
+    </form>
+
+    <div *ngIf="formStatus === 'sending'" class="loading-message">
+        Invio in corso... attendere prego.
+    </div>
+
+</section>
 </div>
