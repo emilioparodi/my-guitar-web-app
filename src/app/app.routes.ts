@@ -19,5 +19,6 @@ export const routes: Routes = [
   { path: 'resources', component: Resources },
   { path: 'works', component: Works },
   { path: 'notes', component: Notes },
+  { path: 'contacts', component: Contacts },
   { path: 'privacy-&-cookie-policy', component: PrivacyAndCookiePolicy },
 ];
