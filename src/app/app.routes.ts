@@ -5,6 +5,7 @@ import { Tools } from './tools/tools';
 import { Videos } from './videos/videos';
 import { Resources } from './resources/resources';
 import { Works } from './works/works';
+import { Notes } from './notes/notes';
 import { Contacts } from './contacts/contacts';
 
 
@@ -16,5 +17,6 @@ export const routes: Routes = [
   { path: 'videos', component: Videos },
   { path: 'resources', component: Resources },
   { path: 'works', component: Works },
+  { path: 'notes', component: Notes },
   { path: 'contacts', component: Contacts },
 ];
