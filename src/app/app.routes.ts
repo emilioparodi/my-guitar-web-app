@@ -7,6 +7,7 @@ import { Resources } from './resources/resources';
 import { Works } from './works/works';
 import { Notes } from './notes/notes';
 import { Contacts } from './contacts/contacts';
+import { PrivacyAndCookiePolicy } from './privacy-and-cookie-policy/privacy-and-cookie-policy';
 
 
 export const routes: Routes = [
@@ -18,5 +19,5 @@ export const routes: Routes = [
   { path: 'resources', component: Resources },
   { path: 'works', component: Works },
   { path: 'notes', component: Notes },
-  { path: 'contacts', component: Contacts },
+  { path: 'privacy-&-cookie-policy', component: PrivacyAndCookiePolicy },
 ];
