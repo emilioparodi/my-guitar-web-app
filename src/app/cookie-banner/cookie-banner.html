@@ -1,0 +1,19 @@
+<div
+    *ngIf="showBanner"
+    class="fixed-bottom w-100 bg-dark text-white shadow-lg p-3"
+    style="z-index: 1050;"
+    aria-live="polite"
+    role="dialog">
+    <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center">
+        <p class="mb-2 mb-md-0 me-md-4 text-center text-md-start small">
+            We use cookies to improve your browsing experience. By clicking "Accept", you consent to our use of cookies. For more details, please visit our
+            <a routerLink="/privacy-&-cookie-policy" routerLinkActive="active" class="text-info text-decoration-none fw-bold">Privacy Policy</a>.
+        </p>
+        <button
+            (click)="acceptCookies()"
+            class="btn btn-success"
+            type="button">
+            Accept
+        </button>
+    </div>
+</div>

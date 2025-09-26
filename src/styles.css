@@ -19,14 +19,18 @@ body {
   background-size: cover; /* Mantiene la copertura dell'immagine */
 }
 
+body.has-cookie-banner .content-wrapper {
+  padding-bottom: 60px; /* altezza approssimativa del banner */
+}
+
 #container {
-min-height: 100vh;
-display: flex;
-flex-direction: column;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .content-wrapper {
-flex-grow: 1;
+  flex-grow: 1;
 }
 
 h1 {
@@ -87,15 +91,15 @@ th {
   z-index: 9999;
 }
 
-.rainbow-text {
+.rainbow-text{
   background-image: repeating-linear-gradient(45deg, #00FFFF, #00FF7F, #FFFF00, #FF1493, #00BFFF, #9400D3, #ADFF2F);
   font-weight: bold;
-  padding: 5px;
+  margin: 0px;
   text-align: center;
   background-size: 800% 800%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   animation: rainbow 8s ease infinite;
 }
 @keyframes rainbow {
@@ -175,6 +179,10 @@ th {
 }
 
 /* Home */
+
+#mob-home {
+  display: none !important;
+}
 
 .entry-title {
     margin-top: 7rem;;
@@ -314,48 +322,14 @@ th {
   border: 1px solid #000000;
 }
 
-/* CONTACT */
-
-#contact-card {
-    width: 25rem;
-    margin:auto;
-    padding: 5px;
-}
-
-.contact-container {
-  max-width: 600px;
-  margin: 40px auto;
-  padding: 20px;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-h2 { text-align: center; color: #333; }
-.form-group { margin-bottom: 20px; }
-label { display: block; font-weight: bold; margin-bottom: 5px; color: #555; }
-input[type="text"], input[type="email"], textarea, input[type="text"] {
-  width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;
-}
-.error-message { color: #dc3545; font-size: 0.8em; margin-top: 5px; }
-button[type="submit"] {
-  width: 100%; padding: 10px; background-color: #007bff; color: white; border: none;
-  border-radius: 4px; font-size: 1.1em; cursor: pointer; transition: background-color 0.3s;
-}
-button[type="submit"]:hover { background-color: #0056b3; }
-button[type="submit"]:disabled { background-color: #ccc; cursor: not-allowed; }
-
-/* Stili specifici per il captcha e la privacy */
-.captcha-group { display: flex; align-items: center; }
-.captcha-question { margin: 0 10px; font-weight: bold; font-size: 1.2em; }
-.privacy-group { display: flex; align-items: center; }
-.privacy-label { margin-left: 10px; font-weight: normal; }
+/* Contact */
 
 /* Footer */
 
 .footer {
     width: 100%;
     position: absolute;
+    margin-top: auto;
     margin-bottom: 0px;
     padding-bottom: 0px;
     background-color: transparent;
@@ -374,47 +348,31 @@ button[type="submit"]:disabled { background-color: #ccc; cursor: not-allowed; }
 
 }
 
-/* BANNERS */
+/* Cookie banner */
 
-#cookie-law {
-    background-color: #fdd22a;
-    text-align: center;
+.cookie-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1050; /* sopra footer e contenuto */
+  border-radius: 0;
+  font-size: 0.9rem;
+  padding: 0.75rem 1rem;
 }
 
-#cookie-law a{
-    color: #000000;
-    text-decoration: underline;
-}
 
-#banner-container {
-    display:flex;
-    justify-content: space-around;
-    align-items: center;
-    background-color: #FFFFFF;
-    max-width: 989px;
-    margin:auto;
-    padding-bottom: 0px;
-}
-
-.banner {
-    overflow: auto;
-}
-
-#banner-img {
-    float: left;
-    margin-right: 15px;
-    height: 110px;
-}
-
-#banner-link {
-    display: block;
-    text-decoration: none;
-    color: #000000;
-}
 
 /* Mobile */
 
 @media screen and (max-width: 992px) {
+
+    body {
+      background: url('/assets/images/mobile-wallpaper.jpg') no-repeat;
+      background-attachment: fixed; /* Usa 'fixed' per un effetto parallax */
+      background-position: center center;
+      background-size: cover; /* Mantiene la copertura dell'immagine */
+    }
 
     #top-nav {display: none !important;}
 
@@ -444,19 +402,19 @@ button[type="submit"]:disabled { background-color: #ccc; cursor: not-allowed; }
         text-align: center;
     };
 
-    .entry-title {font-size: 2rem !important;}
+    #web-home {display: none !important;}
 
-    .navbar {height: auto; padding-top: 10px; background-color:#1a1a1a;}
+    #mob-home {display: flex !important;}
+
+    .entry-title {font-size: 4rem !important;}
+
+    .navbar {height: auto}
 
     .navbar-brand {display: inline}
 
-    #m-notes {
-        width: 100%;
-    }
+    #m-notes {width: 100%;}
 
-    #img-about {
-        width:100%;
-    }
+    #img-about {width:100%;}
 
     .column {
         width: 100%;
@@ -470,15 +428,9 @@ button[type="submit"]:disabled { background-color: #ccc; cursor: not-allowed; }
         padding-right: 5px;
     }
 
-    #covers {
-        margin-bottom: 15px;
-    }
+    #covers {margin-bottom: 15px;}
 
-    .card {
-        max-width: 100%;
+    .card {max-width: 100%;
 
-    }
-    #banner-container {
-        display: none;
     }
 }

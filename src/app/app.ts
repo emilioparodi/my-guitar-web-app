@@ -3,10 +3,11 @@ import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
 import { Navbar } from "./navbar/navbar";
 import { Footer } from "./footer/footer";
 import { MatIconModule } from '@angular/material/icon';
+import { CookieBanner } from "./cookie-banner/cookie-banner";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Navbar, Footer, MatIconModule],
+  imports: [RouterOutlet, Navbar, Footer, MatIconModule, CookieBanner],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
