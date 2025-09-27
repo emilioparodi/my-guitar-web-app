@@ -1,10 +1,11 @@
 import { Component, OnInit, ChangeDetectorRef, ChangeDetectionStrategy  } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-contacts',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink, RouterLinkActive],
   templateUrl: './contacts.html',
   styleUrl: './contacts.css',
   changeDetection: ChangeDetectionStrategy.OnPush

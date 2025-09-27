@@ -67,7 +67,7 @@
                 <label for="captchaInput" class="form-label">{{ captchaQuestion }}</label>
                 <input type="number" id="captchaInput" name="captcha" class="form-control w-auto d-inline-block" required> </div>
 
-            <div class="mb-3 form-check"> <input type="checkbox" id="privacyCheck" name="privacy" class="form-check-input" required> <label for="privacyCheck" class="form-check-label">I accept the privacy policy.</label> </div>
+            <div class="mb-3 form-check"> <input type="checkbox" id="privacyCheck" name="privacy" class="form-check-input" required> <label for="privacyCheck" class="form-check-label">I accept the <a routerLink="/privacy-&-cookie-policy" routerLinkActive="active">privacy policy.</a> </label> </div>
 
             <div id="error-message" class="alert alert-warning" style="display:none;"> Please fill in all fields, accept the privacy policy, and solve the CAPTCHA.
             </div>
