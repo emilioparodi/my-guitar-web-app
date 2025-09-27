@@ -8,6 +8,7 @@ import { Works } from './works/works';
 import { Notes } from './notes/notes';
 import { Contacts } from './contacts/contacts';
 import { PrivacyAndCookiePolicy } from './privacy-and-cookie-policy/privacy-and-cookie-policy';
+import { NotFound } from './not-found/not-found';
 
 
 export const routes: Routes = [
@@ -21,4 +22,5 @@ export const routes: Routes = [
   { path: 'notes', component: Notes },
   { path: 'contacts', component: Contacts },
   { path: 'privacy-&-cookie-policy', component: PrivacyAndCookiePolicy },
+  { path: '**', component: NotFound },
 ];
