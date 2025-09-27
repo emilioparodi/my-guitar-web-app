@@ -6,10 +6,51 @@
       "**/.*",
       "**/node_modules/**"
     ],
+    "redirects": [
+      {
+        "source": "/about",
+        "destination": "/biography",
+        "type": 301
+      },
+      {
+        "source": "/video",
+        "destination": "/videos",
+        "type": 301
+      },
+      {
+        "source": "/supply",
+        "destination": "/resources",
+        "type": 301
+      },
+      {
+        "source": "/tips",
+        "destination": "/notes",
+        "type": 301
+      },
+      {
+        "source": "/contact",
+        "destination": "/contacts",
+        "type": 301
+      },
+      {
+        "source": "/privacy-and-policy",
+        "destination": "/privacy-and-cookie-policy",
+        "type": 301
+      }
+    ],
     "rewrites": [
       {
         "source": "**",
-        "destination": "/index.html"
+        "destination": "https://www.emilioguitar.club:splat",
+        "type": 301,
+        "not": [
+          {
+            "host": "www.emilioguitar.club"
+          },
+          {
+            "host": "www.emilioguitar.club"
+          }
+        ]
       }
     ]
   }
