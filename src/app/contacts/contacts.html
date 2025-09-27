@@ -39,10 +39,10 @@
   <div class="row justify-content-center">
     <div class="col-lg-8">
       <section class="contact-form">
-        <div *ngIf="formStatus === 'success'" class="alert success-message">
+        <div *ngIf="formStatus === 'success'" class="alert alert-success">
             Thank you! Your message was sent successfully.
         </div>
-        <div *ngIf="formStatus === 'error'" class="alert error-message">
+        <div *ngIf="formStatus === 'error'" class="alert alert-danger">
             An error occurred while sending. Please try again later.
         </div>
         <form
@@ -52,39 +52,29 @@
             (submit)="validateForm($event)"
             *ngIf="formStatus !== 'success' && formStatus !== 'sending'"
             >
-            <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" id="name" name="name" required>
+            <div class="mb-3"> <label for="name" class="form-label">Name</label> <input type="text" id="name" name="name" class="form-control" required> </div>
+
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" id="email" name="_replyto" class="form-control" required>
             </div>
 
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="_replyto" required>
-            </div>
+            <div class="mb-3">
+                <label for="message" class="form-label">Message</label>
+                <textarea id="message" name="message" rows="5" class="form-control" required></textarea> </div>
 
-            <div class="form-group">
-                <label for="message">Message</label>
-                <textarea id="message" name="message" rows="5" required></textarea>
-            </div>
+            <div class="mb-3 captcha-group">
+                <label for="captchaInput" class="form-label">{{ captchaQuestion }}</label>
+                <input type="number" id="captchaInput" name="captcha" class="form-control w-auto d-inline-block" required> </div>
 
-            <div class="form-group captcha-group">
-                <label for="captchaInput">{{ captchaQuestion }}</label>
-                <input type="number" id="captchaInput" name="captcha" required>
-            </div>
+            <div class="mb-3 form-check"> <input type="checkbox" id="privacyCheck" name="privacy" class="form-check-input" required> <label for="privacyCheck" class="form-check-label">I accept the privacy policy.</label> </div>
 
-            <div class="form-group checkbox-group">
-                <input type="checkbox" id="privacyCheck" name="privacy" required>
-                <label for="privacyCheck">I accept the privacy policy.</label>
-            </div>
-
-            <div id="error-message" class="alert local-error-message" style="display:none;">
-                Please fill in all fields, accept the privacy policy, and solve the CAPTCHA.
+            <div id="error-message" class="alert alert-warning" style="display:none;"> Please fill in all fields, accept the privacy policy, and solve the CAPTCHA.
             </div>
             <button
             type="submit"
             [disabled]="formStatus !== 'idle' && formStatus !== 'error'"
-            class="submit-button"
-            >
+            class="btn btn-primary" >
             Send message
             </button>
         </form>
