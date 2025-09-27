@@ -40,13 +40,14 @@
     ],
     "rewrites": [
       {
+        "source":"**",
+        "destination":"index.html"
+      },
+      {
         "source": "**",
         "destination": "https://www.emilioguitar.club:splat",
         "type": 301,
         "not": [
-          {
-            "host": "www.emilioguitar.club"
-          },
           {
             "host": "www.emilioguitar.club"
           }
